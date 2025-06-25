@@ -2,9 +2,9 @@
 
 /*
  * Plugin Name:       AI Summary Generator
- * Plugin URI:        https://github.com/justin-jiajia/ai-summary
+ * Plugin URI:        https://github.com/justin-jiajia/ai-summary-generator
  * Description:       Generate AI summaries for posts.
- * Version:           1.3
+ * Version:           1.0
  * Author:            Justin Jiajia
  * Author URI:        https://hijiajia.top/
  * License:           GPL v2 or later
