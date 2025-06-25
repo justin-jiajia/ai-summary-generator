@@ -15,7 +15,7 @@ class AI_Summary_Frontend {
      */
     public static function init() {
         add_filter('the_content', array(__CLASS__, 'display_summary'));
-        add_filter('the_excerpt', array(__CLASS__, 'override_homepage_summary'));
+        add_filter('get_the_excerpt', array(__CLASS__, 'override_homepage_summary'));
     }
 
     /**
