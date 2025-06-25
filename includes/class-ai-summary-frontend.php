@@ -15,7 +15,7 @@ class AI_Summary_Frontend {
      */
     public static function init() {
         add_filter('the_content', array(__CLASS__, 'display_summary'));
-        add_filter('the_content', array(__CLASS__, 'override_homepage_summary'));
+        add_filter('the_excerpt', array(__CLASS__, 'override_homepage_summary'));
     }
 
     /**
@@ -39,19 +39,19 @@ class AI_Summary_Frontend {
     /**
      * Override homepage summary
      *
-     * @param string $content Post content
-     * @return string Modified content
+     * @param string $excerpt Post excerpt
+     * @return string Modified excerpt
      */
-    public static function override_homepage_summary($content) {
+    public static function override_homepage_summary($excerpt) {
         if ((is_home() || is_front_page()) && in_the_loop() && is_main_query()) {
             $override = get_option('ai_summary_homepage_override', 'no');
             if ($override === 'yes') {
                 $summary = AI_Summary_Core::get_summary(get_the_ID());
                 if ($summary) {
-                    $content = '<p>' . esc_html($summary) . '</p>';
+                    return '<p>' . esc_html($summary) . '</p>';
                 }
             }
         }
-        return $content;
+        return $excerpt;
     }
 }
