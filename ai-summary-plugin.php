@@ -4,7 +4,7 @@
  * Plugin Name:       AI Summary Generator
  * Plugin URI:        https://github.com/justin-jiajia/ai-summary-generator
  * Description:       Generate AI summaries for posts.
- * Version:           1.0
+ * Version:           1.1
  * Author:            Justin Jiajia
  * Author URI:        https://hijiajia.top/
  * License:           GPL v2 or later
@@ -56,5 +56,20 @@ function ai_summary_uninstall() {
     
     // Clean up any cached data
     wp_cache_flush();
+}
+
+/**
+ * Get AI summary for a post (Global function for theme developers)
+ *
+ * @param int $post_id Post ID (optional, defaults to current post)
+ * @param bool $formatted Whether to return formatted HTML or plain text
+ * @return string|false AI summary or false if not available
+ */
+function ai_summary_get_summary($post_id = null, $formatted = false) {
+    if (!class_exists('AI_Summary_Frontend')) {
+        return false;
+    }
+    
+    return AI_Summary_Frontend::get_post_summary($post_id, $formatted);
 }
 

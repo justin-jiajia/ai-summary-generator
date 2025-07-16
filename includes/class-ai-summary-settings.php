@@ -175,26 +175,31 @@ class AI_Summary_Settings {
     public static function api_url_callback() {
         $value = get_option('ai_summary_api_url', '');
         echo '<input type="text" name="ai_summary_api_url" value="' . esc_attr($value) . '" class="regular-text">';
+        echo '<p class="description">Enter the API endpoint URL for your AI service (e.g., https://api.openai.com/v1/chat/completions)</p>';
     }
 
     public static function api_token_callback() {
         $value = get_option('ai_summary_api_token', '');
         echo '<input type="text" name="ai_summary_api_token" value="' . esc_attr($value) . '" class="regular-text">';
+        echo '<p class="description">Your API authentication token or key. Keep this secure and do not share it publicly.</p>';
     }
 
     public static function model_name_callback() {
         $value = get_option('ai_summary_model_name', '');
         echo '<input type="text" name="ai_summary_model_name" value="' . esc_attr($value) . '" class="regular-text">';
+        echo '<p class="description">Specify the AI model to use (e.g., gpt-3.5-turbo, gpt-4, claude-3, etc.)</p>';
     }
 
     public static function prompt_callback() {
         $value = get_option('ai_summary_prompt', '');
         echo '<input type="text" name="ai_summary_prompt" value="' . esc_attr($value) . '" class="regular-text">';
+        echo '<p class="description">Custom prompt template for generating summaries. Use variables like {content} for post content.</p>';
     }
 
     public static function custom_css_callback() {
         $value = get_option('ai_summary_custom_css', '');
         echo '<textarea name="ai_summary_custom_css" rows="5" class="large-text">' . esc_textarea($value) . '</textarea>';
+        echo '<p class="description">Add custom CSS styles to customize the appearance of AI summaries on your site.</p>';
     }
 
     public static function homepage_override_callback() {
@@ -203,6 +208,7 @@ class AI_Summary_Settings {
                 <option value="no"' . selected($value, 'no', false) . '>No</option>
                 <option value="yes"' . selected($value, 'yes', false) . '>Yes</option>
               </select>';
+        echo '<p class="description">Enable this to display AI summaries on your homepage instead of full post content. <strong>Note:</strong> This may not work with all themes as it depends on the theme calling <code>get_the_excerpt()</code>. If this doesn\'t work, use <code>ai_summary_get_summary($post_id)</code> function in your theme templates.</p>';
     }
 
     public static function update_on_post_update_callback() {
@@ -211,6 +217,7 @@ class AI_Summary_Settings {
                 <option value="no"' . selected($value, 'no', false) . '>No</option>
                 <option value="yes"' . selected($value, 'yes', false) . '>Yes</option>
               </select>';
+        echo '<p class="description">Automatically regenerate AI summary when a post is updated or modified.</p>';
     }
 
     public static function max_retries_callback() {

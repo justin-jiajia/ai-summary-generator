@@ -54,4 +54,34 @@ class AI_Summary_Frontend {
         }
         return $excerpt;
     }
+
+    /**
+     * Get AI summary for a specific post (for theme developers)
+     *
+     * @param int $post_id Post ID
+     * @param bool $formatted Whether to return formatted HTML or plain text
+     * @return string|false AI summary or false if not available
+     */
+    public static function get_post_summary($post_id = null, $formatted = false) {
+        if (!$post_id) {
+            $post_id = get_the_ID();
+        }
+        
+        if (!$post_id) {
+            return false;
+        }
+
+        $summary = AI_Summary_Core::get_summary($post_id);
+        
+        if (!$summary) {
+            return false;
+        }
+
+        if ($formatted) {
+            $custom_css = get_option('ai_summary_custom_css', '');
+            return '<div class="ai-summary" style="' . esc_attr($custom_css) . '"><blockquote class="wp-block-quote"><p><strong>AI Summary</strong></p><p>' . esc_html($summary) . '</p></blockquote></div>';
+        }
+
+        return $summary;
+    }
 }
