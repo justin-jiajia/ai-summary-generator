@@ -193,7 +193,7 @@ class AI_Summary_Settings {
     public static function prompt_callback() {
         $value = get_option('ai_summary_prompt', '');
         echo '<input type="text" name="ai_summary_prompt" value="' . esc_attr($value) . '" class="regular-text">';
-        echo '<p class="description">Custom prompt template for generating summaries. Use variables like {content} for post content.</p>';
+        echo '<p class="description">Custom system prompt for generating summaries.</p>';
     }
 
     public static function custom_css_callback() {
